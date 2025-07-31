@@ -53,7 +53,7 @@ jobs:
       id: new_release
       uses: softprops/action-gh-release@v2
       with:
-        tag-name: v${{ needs.build.outputs.project_version }}
+        tag_name: v${{ needs.build.outputs.project_version }}
         name: Alpha Release ${{ needs.build.outputs.project_version }}
         body: Automatically uploaded build from build ${{ github.run_number }}
         draft: false
