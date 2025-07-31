@@ -1,0 +1,8 @@
+# This configuration file provides basic controls over the plugin.
+#
+# This plugin works best with Paper (or Paper-based) builds. Untested on Folia.
+Sign:
+  isEnabled: true
+Text:
+  isEnabled: true
+Permission: fjc.hexsigns.edit

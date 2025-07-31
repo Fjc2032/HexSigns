@@ -1,8 +1,15 @@
 name: HexSigns
-version: '1.0'
+version: '${project.version}'
 main: dev.Fjc.hexSigns.HexSigns
 api-version: '1.21'
-prefix: P-Settings
+prefix: Hex
 load: STARTUP
 authors: [ Fjc ]
-description: Lets you toggle certain effects.
+description: Brings in hex characters to signs and chat.
+
+commands:
+  hexsigns:
+    description: Easy access to toggle the configuration.
+    usage: /hexsigns <text/sign> <enable/disable>
+  hexsigns-reload:
+    description: Reloads the plugin.
