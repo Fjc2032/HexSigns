@@ -1,0 +1,8 @@
+name: HexSigns
+version: '1.0'
+main: dev.Fjc.hexSigns.HexSigns
+api-version: '1.21'
+prefix: P-Settings
+load: STARTUP
+authors: [ Fjc ]
+description: Lets you toggle certain effects.
