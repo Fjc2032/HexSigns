@@ -10,6 +10,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    outputs:
+      project_version: ${{ steps.get_version.outputs.version }}
 
     steps:
     - uses: actions/checkout@v4
@@ -21,11 +23,15 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+    - name: Get project version
+      id: get_ver
+      run: echo "version=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> "$GITHUB_OUTPUT"
       
     - name: Grab artifact
       uses: actions/upload-artifact@v4
       with:
-        name: HexSigns-v${project.version}
+        name: HexSigns-v${{ steps.get_version.outputs.version }}
         path: target/*.jar
 
   publish:
@@ -40,14 +46,15 @@ jobs:
     - name: Download artifact
       uses: actions/download-artifact@v4
       with:
-        name: HexSigns-v${project.version}
+        name: HexSigns-v${{ needs.build.outputs.project_version }}
         path: ./downloaded-artifacts
 
     - name: Create new release
+      id: new_release
       uses: softprops/action-gh-release@v2
       with:
-        tag-name: v${{ project.version }}
-        name: Alpha Release ${{ github.run_number }}
+        tag-name: v${{ needs.build.outputs.project_version }}
+        name: Alpha Release ${{ needs.build.outputs.project_version }}
         body: Automatically uploaded build from build ${{ github.run_number }}
         draft: false
         prerelease: false
