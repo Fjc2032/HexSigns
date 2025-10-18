@@ -1,7 +1,6 @@
 package dev.Fjc.hexSigns.listener;
 
 import dev.Fjc.hexSigns.HexSigns;
-import dev.Fjc.hexSigns.util.Perms;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -59,6 +58,8 @@ public class SignListener implements Listener {
      */
     @NotNull
     private String buildHexString(String text) {
+        text = buildExtraColor(text, "#6A4439", "&g");
+
         Matcher match = pattern.matcher(text);
         while (match.find()) {
             String parsedMessage = text.substring(match.start(), match.end());
@@ -66,6 +67,22 @@ public class SignListener implements Listener {
             match = pattern.matcher(text);
         }
         return ChatColor.translateAlternateColorCodes('&', text);
+    }
+
+    /**
+     * Add more "legacy" colors to use.
+     * @param text The text being modified
+     * @param color The hex color you want to use
+     * @param code The sequence to apply this to. (e.g. &h)
+     * @return The new text
+     */
+    private String buildExtraColor(String text, String color, CharSequence code) {
+        if (color.startsWith("#") && color.length() == 7) {
+            if (text.contains(code)) text = text.replace(code, color);
+
+            return text;
+        }
+        return text;
     }
 
     private boolean hasPermission(@NotNull Player player) {

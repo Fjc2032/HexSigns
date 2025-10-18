@@ -25,6 +25,7 @@ public class FileBuilder implements FileInterface {
         file.getParentFile().mkdirs();
 
         plugin.saveResource("config.yml", false);
+
     }
 
     @Override
