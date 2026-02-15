@@ -6,7 +6,7 @@
 
     <groupId>dev.Fjc</groupId>
     <artifactId>HexSigns</artifactId>
-    <version>1.12-alpha</version>
+    <version>1.14-alpha</version>
     <packaging>jar</packaging>
 
     <name>HexSigns</name>

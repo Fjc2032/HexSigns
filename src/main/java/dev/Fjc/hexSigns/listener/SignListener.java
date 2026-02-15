@@ -59,6 +59,8 @@ public class SignListener implements Listener {
     @NotNull
     private String buildHexString(String text) {
         text = buildExtraColor(text, "#6A4439", "&g");
+        text = buildExtraColor(text, "#7582AE", "&h");
+        text = buildExtraColor(text, "#D6D39A", "&i");
 
         Matcher match = pattern.matcher(text);
         while (match.find()) {
